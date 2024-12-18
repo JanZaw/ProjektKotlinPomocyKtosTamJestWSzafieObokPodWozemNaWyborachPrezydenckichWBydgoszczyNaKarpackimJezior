@@ -40,12 +40,13 @@ class MainActivity : AppCompatActivity() {
             val wagaValue = wagaText.toIntOrNull()
 
             if (wiekValue == null || wiekValue <= 0) {
-                Toast.makeText(this, "Wiek musi być większy niż 0)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Wiek musi być większy niż 0", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (wysokoscValue == null || wysokoscValue < 50 || wysokoscValue > 250) {
-                Toast.makeText(this, "Wzrost musi być w zakresie 50-250 cm", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Wzrost musi być w zakresie 50-250 cm", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
@@ -54,13 +55,10 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Jeżeli wszystkie pola są poprawne
-            Toast.makeText(this, "Dane poprawne!", Toast.LENGTH_SHORT).show()
-        }
-
-        ekranButton.setOnClickListener {
-            val intent = Intent(this, ListAcitivity::class.java)
-            startActivity(intent)
+            ekranButton.setOnClickListener {
+                val intent = Intent(this, ListAcitivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 }
