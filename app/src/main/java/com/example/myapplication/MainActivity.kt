@@ -3,10 +3,8 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,30 +33,36 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val wiekValue = wiekText.toIntOrNull()
-            val wysokoscValue = wysokoscText.toIntOrNull()
-            val wagaValue = wagaText.toIntOrNull()
-
-            if (wiekValue == null || wiekValue <= 0) {
+            if (wiekText.toInt() < 0) {
                 Toast.makeText(this, "Wiek musi być większy niż 0", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (wysokoscValue == null || wysokoscValue < 50 || wysokoscValue > 250) {
+            if (wysokoscText.toInt() !in 50..250) {
                 Toast.makeText(this, "Wzrost musi być w zakresie 50-250 cm", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
 
-            if (wagaValue == null || wagaValue < 3 || wagaValue > 200) {
+            if (wagaText.toInt() !in 3..200) {
                 Toast.makeText(this, "Waga musi być w zakresie 3-200 kg", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            ekranButton.setOnClickListener {
-                val intent = Intent(this, ListAcitivity::class.java)
-                startActivity(intent)
-            }
+            saveData(
+                this,
+                imieText,
+                nazwiskoText,
+                wiekText.toInt(),
+                wysokoscText.toInt(),
+                wagaText.toInt()
+            )
+            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show()
+        }
+
+        ekranButton.setOnClickListener {
+            val intent = Intent(this, ListAcitivity::class.java)
+            startActivity(intent)
         }
     }
 }
